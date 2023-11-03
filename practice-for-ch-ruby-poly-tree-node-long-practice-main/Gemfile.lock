@@ -19,11 +19,10 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
   byebug
   rspec (~> 3)
 
 BUNDLED WITH
-   2.4.21
+   2.4.19
