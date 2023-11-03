@@ -10,40 +10,6 @@ class PolyTreeNode
         @children = []
     end
 
-    # def parent=(node)
-    #     # if node != nil
-    #     #     unless !parent
-    #     #         parent.children.each_with_index do |child, i|
-    #     #             parent.children = parent.children[0...i] + parent.children[i + 1..-1] if child == self
-    #     #         end
-    #     #     end
-    #     #     @parent = node
-    #     #     unless parent.children.include?(self)
-    #     #         parent.children << self
-    #     #     end
-    #     # else
-    #     #     nil
-    #     # end
-    # end
-    # def parent=(node)
-    #     if node != nil
-    #         old_parent = self.parent
-    #         new_parent = node
-    #         if !new_parent.children.include?(self)
-    #             new_parent.children << self
-    #         end
-    #         @parent = node
-    #         if old_parent != nil
-    #             old_parent.children.each_with_index do |child, i|
-    #                 old_parent.children = old_parent.children[0...i] + old_parent.children[i + 1..-1] if child == self
-    #             end
-    #         end
-    #     else
-    #         @parent = nil
-    #     end
-
-
-    # end
     def parent=(node)
         #remove self from old_parents' children but only if old parent is NOT nil
         old_parent = @parent
@@ -57,12 +23,26 @@ class PolyTreeNode
         end
         #set self's parent to given node
         @parent = node
-
-
     end
 
-    def add_child
-        
+    def add_child(child_node)
+        child_node.parent = self
     end
+
+    def remove_child(child_node)
+        raise "not a child" if !children.include?(child_node)
+        child_node.parent = nil
+    end
+
+    def dfs(target_value)
+        return self if value == target_value
+        children.each do |child|
+            search_info = child.dfs(target_value)
+            return search_info if !search_info.nil?
+        end
+        nil
+    end
+
+    def bfs()
   
 end
