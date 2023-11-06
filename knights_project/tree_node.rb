@@ -8,7 +8,6 @@ class PolyTreeNode
         @value = val
         @parent = nil
         @children = []
-        @root_node = 
     end
 
     def parent=(node)
